@@ -1,0 +1,51 @@
+# Route pour la page d'accueil (le nom est utilisé pour les redirections que fait Symfony)
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+    
+pokemons.index:
+    path: /pokemons/{page}
+    controller: App\Controller\PokemonController::index
+    defaults:
+        page: 1
+
+# Liste de tous les clients
+customers.index:
+    path: /customers
+    controller: App\Controller\Customer\CustomerController::index
+    
+# Détail d'un client
+customers.show:
+    path: /customers/{id}
+    controller: App\Controller\Customer\CustomerController::show
+
+# Autre route
+hello:
+    path: /hello/{name}
+    controller: App\Controller\HelloController::hello
+    
+# Liste des articles
+posts.index:
+    path: /posts
+    controller: App\Controller\Blog\PostController::index
+    methods: GET|HEAD
+
+# Détail d'un article
+posts.show:
+    path: /posts/{id}
+    controller: App\Controller\Blog\PostController::show
+    methods: GET|HEAD
+    requirements:
+        id: '\d+'
+    
+# Formulaire de création d'un article
+posts.create:
+    path: /posts/create
+    controller: App\Controller\Blog\PostController::create
+    methods: GET|HEAD
+    
+# Enregistrement de l'article en db
+posts.store:
+    path: /posts
+    controller: App\Controller\Blog\PostController::store
+    methods: POST

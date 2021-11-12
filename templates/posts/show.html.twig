@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>{{ post.title|upper }}</h1>
+            <small>Rédigé le {{ post.createdAt|date('d/m/Y H:i') }}</small>
+        </header>
+        {{ post.content|nl2br }}
+    </article>
+{% endblock %}

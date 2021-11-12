@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détail du client {{ customer.customerNumber }}
+{% endblock %}
+
+{% block content %}
+
+    <h1>Détail du client {{ customer.customerNumber }}</h1>
+    
+    <section>
+        <h2>Informations du client</h2>
+        
+        <dl>
+            <dt>Numéro du client</dt>
+            <dd>{{ customer.customerNumber }}</dd>
+            <dt>Nom du client</dt>
+            <dd>{{ customer.customerName }}</dd>
+            <dt>Adresse</dt>
+            <dd>{{ customer.addressLine1 }}</dd>
+            <dt>Ville</dt>
+            <dd>{{ customer.city }}</dd>
+            <dt>Pays</dt>
+            <dd>{{ customer.country }}</dd>
+            <dt>Code postal</dt>
+            <dd>{{ customer.postalCode }}</dd>
+            <dt>Contact du client</dt>
+            <dd>{{ customer.contactFirstName }} {{ customer.contactLastName }}</dd>
+            <dt>Commercial dédié</dt>
+            <dd>{{ customer.firstName }} {{ customer.lastName }}</dd>
+        </dl>
+    </section>
+    
+    <hr></hr>
+    
+    <section>
+        <h2>Liste des commandes</h2>
+        
+        {% if customer.orderNumber %}
+        
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>Numéro commande</th>
+                        <th>Date de la commande</th>
+                        <th>Statut</th>
+                        <th>Prix total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.orderNumber }}</td>
+                            <td>{{ order.orderDate }}</td>
+                            <td>{{ order.status }}</td>
+                            <td>{{ order.totalPrice }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="alert alert-danger">Aucune commande passée !<br>Merci de rappeler le client pour remédier à cela.</p>
+        {% endif %}
+    </section>
+{% endblock %}
